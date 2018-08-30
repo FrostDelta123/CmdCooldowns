@@ -1,2 +1,4 @@
 commands:
-  /example: 60
+  - /god
+cooldowns:
+  /god: 60
