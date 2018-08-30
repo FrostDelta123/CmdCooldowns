@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CmdCooldowns:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CmdCooldowns_jar</output-path>
+    <root id="archive" name="CmdCooldowns.jar">
+      <element id="module-output" name="CmdCooldowns" />
+    </root>
+  </artifact>
+</component>

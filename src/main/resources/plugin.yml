@@ -1,0 +1,6 @@
+name: CmdCooldowns
+version: ${project.version}
+main: ru.frostdelta.cmdcooldowns.CmdCooldowns
+authors: [FrostDelta123]
+description: CmdCooldowns
+website: https://scrollmine.net/
