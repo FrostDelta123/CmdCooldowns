@@ -20,7 +20,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
             String group = plugin.getConfig().getString("group");
             for(String permission : plugin.getConfig().getStringList("permissions")){
                 plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), "pex group " + group + " add "+ permission);
-                Bukkit.broadcastMessage(ChatColor.GREEN + "Permission " + permission + " added!");
+                sender.sendMessage(ChatColor.GREEN + "Permission " + permission + " added!");
             }
             return true;
         }
