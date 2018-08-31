@@ -31,12 +31,12 @@ public class EventListener implements Listener {
 
         for(String comm : plugin.getConfig().getStringList("commands")){
            if(e.getMessage().startsWith(comm)){
-               Integer cooldown = plugin.getConfig().getInt("cooldowns." + e.getMessage());
+               Integer cooldown = plugin.getConfig().getInt("cooldowns." + comm);
                if(!getCommand().containsKey(p)){
-                   getCommand().put(p, e.getMessage());
+                   getCommand().put(p, comm);
                    BukkitTask task = new Scheduler(plugin, p).runTaskLaterAsynchronously(this.plugin, cooldown*20);
                }else{
-                   if(getCommand().get(p).equalsIgnoreCase(e.getMessage())) {
+                   if(getCommand().get(p).equalsIgnoreCase(comm)) {
                        e.setCancelled(true);
                        p.sendMessage(ChatColor.RED + "Подождите перед использованием!");
                    }
