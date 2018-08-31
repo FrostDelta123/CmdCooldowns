@@ -7,3 +7,5 @@ website: https://scrollmine.net/
 commands:
   execute:
     permission: cmdcooldown.execute
+  cmdreload:
+    permission: cmdcooldown.reload

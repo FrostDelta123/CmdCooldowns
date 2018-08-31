@@ -11,6 +11,7 @@ public final class CmdCooldowns extends JavaPlugin {
         this.saveDefaultConfig();
         this.getServer().getPluginManager().registerEvents(new EventListener(this), this);
         this.getCommand("execute").setExecutor(executor);
+        this.getCommand("cmdreload").setExecutor(executor);
     }
 
     @Override

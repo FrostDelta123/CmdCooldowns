@@ -16,13 +16,18 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(args.length == 0){
+        if(cmd.getName().equalsIgnoreCase("execute") && args.length == 0){
             String group = plugin.getConfig().getString("group");
             for(String permission : plugin.getConfig().getStringList("permissions")){
                 plugin.getServer().dispatchCommand(Bukkit.getConsoleSender(), "pex group " + group + " add "+ permission);
                 sender.sendMessage(ChatColor.GREEN + "Permission " + permission + " added!");
             }
             return true;
+        }else if(cmd.getName().equalsIgnoreCase("cmdreload")){
+
+            plugin.reloadConfig();
+            plugin.saveConfig();
+            sender.sendMessage(ChatColor.GREEN + "Config reloaded!");
         }
         return true;
     }
