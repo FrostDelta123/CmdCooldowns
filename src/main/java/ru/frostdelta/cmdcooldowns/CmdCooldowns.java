@@ -7,10 +7,10 @@ public final class CmdCooldowns extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
+        CommandExecutor executor = new CommandExecutor(this);
         this.saveDefaultConfig();
         this.getServer().getPluginManager().registerEvents(new EventListener(this), this);
-
+        this.getCommand("execute").setExecutor(executor);
     }
 
     @Override

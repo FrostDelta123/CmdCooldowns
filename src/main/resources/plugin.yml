@@ -4,3 +4,6 @@ main: ru.frostdelta.cmdcooldowns.CmdCooldowns
 authors: [FrostDelta123]
 description: CmdCooldowns
 website: https://scrollmine.net/
+commands:
+  execute:
+    permission: cmdcooldown.execute

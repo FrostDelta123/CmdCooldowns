@@ -2,3 +2,21 @@ commands:
   - /god
 cooldowns:
   /god: 60
+
+group: premium
+
+permissions:
+  - ultracosmetics.gadgets.batblaster
+  - ultracosmetics.gadgets.chickenator
+  - ultracosmetics.gadgets.colorbomb
+  - ultracosmetics.gadgets.discoball
+  - ultracosmetics.gadgets.etherealpearl
+  - ultracosmetics.gadgets.fleshhook
+  - ultracosmetics.gadgets.melonthrower
+  - ultracosmetics.gadgets.blizzardblaster
+  - ultracosmetics.gadgets.portalgun
+  - ultracosmetics.gadgets.explosivesheep
+  - ultracosmetics.gadgets.paintballgun
+  - ultracosmetics.gadgets.thorhammer
+  - ultracosmetics.gadgets.antigravity
+  - ultracosmetics.gadgets.smashdown
