@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitTask;
 import ru.frostdelta.cmdcooldowns.CmdCooldowns;
 import ru.frostdelta.cmdcooldowns.Scheduler;
@@ -22,6 +23,11 @@ public class EventListener implements Listener {
 
     }
 
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent e){
+        e.getPlayer().sendTitle(ChatColor.RED + "Scroll" + ChatColor.BLUE + "Mine", ChatColor.GOLD + "Добро пожаловать!");
+    }
 
     private static Map<Player, String> command = new HashMap<Player, String>();
 
