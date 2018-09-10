@@ -1,5 +1,5 @@
 name: CmdCooldowns
-version: ${project.version}
+version: 1.3
 main: ru.frostdelta.cmdcooldowns.CmdCooldowns
 authors: [FrostDelta123]
 description: CmdCooldowns
