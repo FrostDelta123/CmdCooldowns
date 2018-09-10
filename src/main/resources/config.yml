@@ -5,6 +5,15 @@ cooldowns:
 
 group: premium
 
+url: jdbc:mysql://localhost:3306/test
+username: test
+password: test
+
+coloumns:
+  - amountCase1
+  - amountCase2
+  - amountCase3
+
 permissions:
   - ultracosmetics.gadgets.batblaster
   - ultracosmetics.gadgets.chickenator

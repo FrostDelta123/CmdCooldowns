@@ -9,3 +9,5 @@ commands:
     permission: cmdcooldown.execute
   cmdreload:
     permission: cmdcooldown.reload
+  getcases:
+    permission: cmdcooldown.getcases

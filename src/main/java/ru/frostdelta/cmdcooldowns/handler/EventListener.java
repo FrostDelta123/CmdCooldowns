@@ -26,7 +26,7 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
-        e.getPlayer().sendTitle(ChatColor.RED + "Scroll" + ChatColor.BLUE + "Mine", ChatColor.GOLD + "Добро пожаловать!");
+        e.getPlayer().sendTitle(ChatColor.RED + "Scroll" + ChatColor.BLUE + "Mine", ChatColor.GOLD + "Добро пожаловать, " + e.getPlayer().getName());
     }
 
     private static Map<Player, String> command = new HashMap<Player, String>();
@@ -34,6 +34,10 @@ public class EventListener implements Listener {
     @EventHandler
     public void onCommandUse(PlayerCommandPreprocessEvent e){
         Player p = e.getPlayer();
+
+        if (p.hasPermission("cmdcooldown.bypass")){
+            return;
+        }
 
         for(String comm : plugin.getConfig().getStringList("commands")){
            if(e.getMessage().startsWith(comm)){
