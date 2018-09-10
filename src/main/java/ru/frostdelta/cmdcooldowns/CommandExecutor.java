@@ -26,22 +26,27 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
                 sender.sendMessage(ChatColor.GREEN + "Permission " + permission + " added!");
             }
             return true;
-        }else if(cmd.getName().equalsIgnoreCase("cmdreload")){
+        }else
+        if(cmd.getName().equalsIgnoreCase("cmdreload")){
 
             plugin.reloadConfig();
             plugin.saveConfig();
             sender.sendMessage(ChatColor.GREEN + "Config reloaded!");
+            return true;
         }else
-            if(cmd.getName().equalsIgnoreCase("getcases") && args.length == 0){
-                Network network = new Network();
-                Player player = (Player) sender;
-                UUID uuid = player.getUniqueId();
-                for(String col : plugin.getConfig().getStringList("coloumns")){
-                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "crate give to " + player.getName() + " " + getCaseName(col) + " " + network.getCases(col, uuid.toString()) + " online");
-                }
-                sender.sendMessage(ChatColor.GREEN + "Кейсы выданы!");
-                return true;
+        if(cmd.getName().equalsIgnoreCase("getcases") && args.length == 0){
+            Network network = new Network();
+            Player player = (Player) sender;
+            UUID uuid = player.getUniqueId();
+            for(String col : plugin.getConfig().getStringList("coloumns")){
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "crate give to " + player.getName() + " " + getCaseName(col) + " " + network.getCases(col, uuid.toString()) + " online");
             }
+            sender.sendMessage(ChatColor.GREEN + "Кейсы выданы!");
+            return true;
+        }else
+        if(cmd.getName().equalsIgnoreCase("gadgets") && args.length == 0){
+            Bukkit.getServer().dispatchCommand(sender, "uc menu main");
+        }
         return true;
     }
 

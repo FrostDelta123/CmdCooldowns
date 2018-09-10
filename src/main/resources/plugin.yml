@@ -11,3 +11,5 @@ commands:
     permission: cmdcooldown.reload
   getcases:
     permission: cmdcooldown.getcases
+  gadgets:
+    permission: cmdcooldown.gadgets

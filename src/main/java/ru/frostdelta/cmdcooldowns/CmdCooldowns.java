@@ -18,6 +18,7 @@ public final class CmdCooldowns extends JavaPlugin {
         this.getCommand("execute").setExecutor(executor);
         this.getCommand("cmdreload").setExecutor(executor);
         this.getCommand("getcases").setExecutor(executor);
+        this.getCommand("gadgets").setExecutor(executor);
 
         ntw.setPassword(this.getConfig().getString("password"));
         ntw.setUrl(this.getConfig().getString("url"));
