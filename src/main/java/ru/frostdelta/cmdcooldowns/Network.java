@@ -11,17 +11,17 @@ import java.sql.ResultSet;
 
 public class Network {
 
-    public String url, username, password;
+    private String url, username, password;
     private static HashMap<String, PreparedStatement> preparedStatements = new HashMap<>();
     private Connection connection;
 
     public void openConnection() throws SQLException, ClassNotFoundException {
-        if (connection != null && !connection.isClosed()) {
+        if (connection != null || !connection.isClosed()) {
             return;
         }
 
         synchronized (this) {
-            if (connection != null && !connection.isClosed()) {
+            if (connection != null || !connection.isClosed()) {
                 return;
             }
             Class.forName("com.mysql.jdbc.Driver");
@@ -35,7 +35,6 @@ public class Network {
 
     public Integer getCases(String col, String uuid) {
         try {
-            openConnection();
             PreparedStatement getCases = preparedStatements.get("getCases");
 
             getCases.setString(1, uuid);
@@ -47,8 +46,6 @@ public class Network {
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -56,15 +53,18 @@ public class Network {
     @Setter
     public void setUrl(String url){
         this.url = url;
+        System.out.println(this.url);
     }
 
     @Setter
     public void setUsername(String username){
         this.username = username;
+        System.out.println(this.username);
     }
 
     @Setter
     public void setPassword(String password){
         this.password = password;
+        System.out.println(this.password);
     }
 }

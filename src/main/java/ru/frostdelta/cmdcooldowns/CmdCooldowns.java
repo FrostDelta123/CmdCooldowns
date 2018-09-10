@@ -24,7 +24,11 @@ public final class CmdCooldowns extends JavaPlugin {
         ntw.setUrl(this.getConfig().getString("url"));
         ntw.setUsername(this.getConfig().getString("username"));
 
-        Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable() {
+        System.out.println(this.getConfig().getString("password"));
+        System.out.println(this.getConfig().getString("url"));
+        System.out.println(this.getConfig().getString("username"));
+
+        Bukkit.getScheduler().runTask(this, new Runnable() {
             @Override
             public void run() {
                 try {
