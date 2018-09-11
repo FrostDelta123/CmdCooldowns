@@ -30,6 +30,22 @@ public class Network {
 
             preparedStatements.put("getCases", connection.prepareStatement(
                     "SELECT * FROM `cases` WHERE `uuid`=?"));
+            preparedStatements.put("addUUID", connection.prepareStatement(
+                    "INSERT INTO `cases` (uuid, amountCase1, amountCase2, amountCase3) VALUES (?,?,?)"));
+        }
+    }
+
+    public void addUUID(String uuid) {
+        try {
+            PreparedStatement addUUID = preparedStatements.get("addUUID");
+            addUUID.setString(1, uuid);
+            addUUID.setInt(2, 0);
+            addUUID.setInt(3, 0);
+            addUUID.setInt(4, 0);
+
+            addUUID.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -42,12 +58,12 @@ public class Network {
                 while (rs.next()) {
                     return rs.getInt(col);
                 }
-                return 0;
+                return -1;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return null;
+        return -1;
     }
 
     @Setter

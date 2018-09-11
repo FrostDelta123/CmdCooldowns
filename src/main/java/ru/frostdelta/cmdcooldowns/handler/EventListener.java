@@ -9,13 +9,16 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitTask;
 import ru.frostdelta.cmdcooldowns.CmdCooldowns;
+import ru.frostdelta.cmdcooldowns.Network;
 import ru.frostdelta.cmdcooldowns.Scheduler;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class EventListener implements Listener {
 
+    Network network = new Network();
     CmdCooldowns plugin;
     public EventListener(CmdCooldowns instance){
 
@@ -23,10 +26,13 @@ public class EventListener implements Listener {
 
     }
 
-
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
+        UUID uuid = e.getPlayer().getUniqueId();
         e.getPlayer().sendTitle(ChatColor.RED + "Scroll" + ChatColor.BLUE + "Mine", ChatColor.GOLD + "Добро пожаловать, " + e.getPlayer().getName());
+        if(network.getCases("amountCase1", uuid.toString()) == -1){
+            network.addUUID(uuid.toString());
+        }
     }
 
     private static Map<Player, String> command = new HashMap<Player, String>();
