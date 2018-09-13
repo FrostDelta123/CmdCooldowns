@@ -16,12 +16,12 @@ public class Network {
     private Connection connection;
 
     public void openConnection() throws SQLException, ClassNotFoundException {
-        if (connection != null || !connection.isClosed()) {
+        if (connection != null && !connection.isClosed()) {
             return;
         }
 
         synchronized (this) {
-            if (connection != null || !connection.isClosed()) {
+            if (connection != null && !connection.isClosed()) {
                 return;
             }
             Class.forName("com.mysql.jdbc.Driver");
@@ -31,8 +31,42 @@ public class Network {
             preparedStatements.put("getCases", connection.prepareStatement(
                     "SELECT * FROM `cases` WHERE `uuid`=?"));
             preparedStatements.put("addUUID", connection.prepareStatement(
-                    "INSERT INTO `cases` (uuid, amountCase1, amountCase2, amountCase3) VALUES (?,?,?)"));
+                    "INSERT INTO `cases` (uuid, amountCase1, amountCase2, amountCase3) VALUES (?,?,?,?)"));
+            preparedStatements.put("isExists", connection.prepareStatement(
+                    "SELECT COUNT(*) FROM `cases` WHERE `uuid`=?"));
+            preparedStatements.put("deleteCases", connection.prepareStatement(
+                    "UPDATE `cases` SET `amountCase1`=?, `amountCase2`=?, `amountCase3`=? WHERE `uuid`=?"));
         }
+    }
+
+    public void deleteCases(String uuid) {
+        try {
+
+            PreparedStatement deleteCases = preparedStatements.get("deleteCases");
+            deleteCases.setInt(1, 0);
+            deleteCases.setInt(2, 0);
+            deleteCases.setInt(3, 0);
+            deleteCases.setString(4, uuid);
+            deleteCases.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int isExists(String uuid) {
+        try {
+
+            PreparedStatement isExists = preparedStatements.get("isExists");
+            isExists.setString(1, uuid);
+            try (ResultSet rs = isExists.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
     }
 
     public void addUUID(String uuid) {

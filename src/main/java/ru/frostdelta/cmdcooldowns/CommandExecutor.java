@@ -42,6 +42,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "crate give to " + player.getName() + " " + getCaseName(col) + " " + network.getCases(col, uuid.toString()) + " online");
             }
             sender.sendMessage(ChatColor.GREEN + "Кейсы выданы!");
+            network.deleteCases(player.getUniqueId().toString());
             return true;
         }else
         if(cmd.getName().equalsIgnoreCase("gadgets") && args.length == 0){

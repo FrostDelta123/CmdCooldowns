@@ -1,6 +1,7 @@
 package ru.frostdelta.cmdcooldowns.handler;
 
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,7 +31,7 @@ public class EventListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e){
         UUID uuid = e.getPlayer().getUniqueId();
         e.getPlayer().sendTitle(ChatColor.RED + "Scroll" + ChatColor.BLUE + "Mine", ChatColor.GOLD + "Добро пожаловать, " + e.getPlayer().getName());
-        if(network.getCases("amountCase1", uuid.toString()) == -1){
+        if(network.isExists(uuid.toString()) == 0){
             network.addUUID(uuid.toString());
         }
     }
