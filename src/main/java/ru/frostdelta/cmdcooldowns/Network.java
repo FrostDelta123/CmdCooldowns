@@ -36,7 +36,40 @@ public class Network {
                     "SELECT COUNT(*) FROM `cases` WHERE `uuid`=?"));
             preparedStatements.put("deleteCases", connection.prepareStatement(
                     "UPDATE `cases` SET `amountCase1`=?, `amountCase2`=?, `amountCase3`=? WHERE `uuid`=?"));
+            preparedStatements.put("getGroup", connection.prepareStatement(
+                    "SELECT * FROM `permissions_inheritance` WHERE `uuid`=?"));
         }
+    }
+
+    public void addUser(String uuid) {
+        try {
+            PreparedStatement addUUID = preparedStatements.get("addUUID");
+            addUUID.setString(1, uuid);
+            addUUID.setInt(2, 0);
+            addUUID.setInt(3, 0);
+            addUUID.setInt(4, 0);
+
+            addUUID.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getGroup(String uuid) {
+        try {
+            PreparedStatement getGroup = preparedStatements.get("getGroup");
+
+            getGroup.setString(1, uuid);
+            try (ResultSet rs = getGroup.executeQuery()) {
+                while (rs.next()) {
+                    return rs.getString("parent");
+                }
+                return "";
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return "";
     }
 
     public void deleteCases(String uuid) {

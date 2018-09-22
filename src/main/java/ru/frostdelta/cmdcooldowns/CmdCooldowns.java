@@ -20,6 +20,10 @@ public final class CmdCooldowns extends JavaPlugin {
         this.getCommand("getcases").setExecutor(executor);
         this.getCommand("gadgets").setExecutor(executor);
 
+        Vault.setupChat();
+        Vault.setupEconomy();
+        Vault.setupPermissions();
+
         ntw.setPassword(this.getConfig().getString("password"));
         ntw.setUrl(this.getConfig().getString("url"));
         ntw.setUsername(this.getConfig().getString("username"));

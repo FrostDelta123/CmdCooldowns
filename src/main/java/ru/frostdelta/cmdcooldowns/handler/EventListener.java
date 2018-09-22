@@ -12,6 +12,7 @@ import org.bukkit.scheduler.BukkitTask;
 import ru.frostdelta.cmdcooldowns.CmdCooldowns;
 import ru.frostdelta.cmdcooldowns.Network;
 import ru.frostdelta.cmdcooldowns.Scheduler;
+import ru.frostdelta.cmdcooldowns.Vault;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +30,21 @@ public class EventListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
+        switch (Vault.permission.getPrimaryGroup(e.getPlayer())){
+            case "premium":
+                break;
+            case "master":
+                break;
+            case "deluxe":
+                break;
+            case "legend":
+                break;
+            case "titan":
+                break;
+            default:
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user "+e.getPlayer().getName()+" group set default");
+                break;
+        }
         UUID uuid = e.getPlayer().getUniqueId();
         e.getPlayer().sendTitle(ChatColor.RED + "Scroll" + ChatColor.BLUE + "Mine", ChatColor.GOLD + "Добро пожаловать, " + e.getPlayer().getName());
         if(network.isExists(uuid.toString()) == 0){
