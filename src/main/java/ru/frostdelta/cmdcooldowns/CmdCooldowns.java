@@ -19,6 +19,7 @@ public final class CmdCooldowns extends JavaPlugin {
         this.getCommand("cmdreload").setExecutor(executor);
         this.getCommand("getcases").setExecutor(executor);
         this.getCommand("gadgets").setExecutor(executor);
+        this.getCommand("free").setExecutor(executor);
 
         Vault.setupChat();
         Vault.setupEconomy();
