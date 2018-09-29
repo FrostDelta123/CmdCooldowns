@@ -27,9 +27,10 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
         Player p = (Player) sender;
         if(cmd.getName().equalsIgnoreCase("get")){
             Integer exp = p.getTotalExperience();
-            Vault.economy.depositPlayer(p, exp*300);
-            p.sendMessage(ChatColor.GREEN + "За " +exp+ " опыта вы получили: "+exp*300+ " монет!");
+            Vault.economy.depositPlayer(p, exp*30);
+            p.sendMessage(ChatColor.GREEN + "За " +exp+ " опыта вы получили: "+exp*30+ " монет!");
             p.setTotalExperience(0);
+            p.setExp(0);
             return true;
         }else
         if(cmd.getName().equalsIgnoreCase("free")){
