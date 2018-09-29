@@ -1,11 +1,14 @@
 package ru.frostdelta.cmdcooldowns;
 
+import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class CommandExecutor implements org.bukkit.command.CommandExecutor {
@@ -17,8 +20,26 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
 
     }
 
+    private List<Player> freeList = new ArrayList<Player>();
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if(cmd.getName().equalsIgnoreCase("free")){
+            Player p = (Player) sender;
+            if(freeList.contains(p)){
+                sender.sendMessage(ChatColor.RED + "Вы уже испытывали удачу!");
+                return true;
+            }
+            int a = 0;
+            int b = 100;
+            int random1 = a + (int) (Math.random() * b);
+            if(random1 <= 7){
+                sender.sendMessage(ChatColor.GREEN + "Вы выиграли КЕЙС С ДОНАТОМ");
+                Bukkit.broadcastMessage(ChatColor.RED + sender.getName() + ChatColor.GREEN + "Выиграл КЕЙС С ДОНАТОМ");
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "crate give to "+sender.getName()+" DonateChest 1 online");
+            }else sender.sendMessage(ChatColor.RED + "Вы ничего не выиграли, попробуйте позже!");
+            return true;
+        }else
         if(cmd.getName().equalsIgnoreCase("execute") && args.length == 0){
             String group = plugin.getConfig().getString("group");
             for(String permission : plugin.getConfig().getStringList("permissions")){
