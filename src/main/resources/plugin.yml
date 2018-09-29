@@ -15,3 +15,5 @@ commands:
     permission: cmdcooldown.gadgets
   free:
     permission: cmdcooldown.getcases
+  get:
+    permission: cmdcooldown.getcases

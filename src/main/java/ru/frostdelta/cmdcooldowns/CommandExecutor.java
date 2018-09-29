@@ -23,9 +23,16 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
     private List<Player> freeList = new ArrayList<Player>();
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
+        Player p = (Player) sender;
+        if(cmd.getName().equalsIgnoreCase("get")){
+            Integer exp = p.getTotalExperience();
+            Vault.economy.depositPlayer(p, exp*300);
+            p.sendMessage(ChatColor.GREEN + "За " +exp+ " опыта вы получили: "+exp*300+ " монет!");
+            p.setTotalExperience(0);
+            return true;
+        }else
         if(cmd.getName().equalsIgnoreCase("free")){
-            Player p = (Player) sender;
             if(freeList.contains(p)){
                 sender.sendMessage(ChatColor.RED + "Вы уже испытывали удачу!");
                 return true;

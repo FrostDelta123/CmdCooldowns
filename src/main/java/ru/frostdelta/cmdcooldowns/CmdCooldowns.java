@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public final class CmdCooldowns extends JavaPlugin {
 
-    Network ntw = new Network();
+    private Network ntw = new Network();
 
     @Override
     public void onEnable() {
@@ -20,6 +20,7 @@ public final class CmdCooldowns extends JavaPlugin {
         this.getCommand("getcases").setExecutor(executor);
         this.getCommand("gadgets").setExecutor(executor);
         this.getCommand("free").setExecutor(executor);
+        this.getCommand("get").setExecutor(executor);
 
         Vault.setupChat();
         Vault.setupEconomy();
