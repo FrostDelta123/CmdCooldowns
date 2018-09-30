@@ -46,6 +46,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
                 Bukkit.broadcastMessage(ChatColor.RED + sender.getName() + ChatColor.GREEN + "Выиграл КЕЙС С ДОНАТОМ");
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "crate give to "+sender.getName()+" DonateChest 1 online");
             }else sender.sendMessage(ChatColor.RED + "Вы ничего не выиграли, попробуйте позже!");
+            freeList.add(p);
             return true;
         }else
         if(cmd.getName().equalsIgnoreCase("execute") && args.length == 0){
