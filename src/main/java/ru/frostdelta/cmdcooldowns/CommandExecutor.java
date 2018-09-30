@@ -31,6 +31,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
             p.sendMessage(ChatColor.GREEN + "За " +exp+ " опыта вы получили: "+exp*30+ " монет!");
             p.setTotalExperience(0);
             p.setExp(0);
+            p.setLevel(0);
             return true;
         }else
         if(cmd.getName().equalsIgnoreCase("free")){
