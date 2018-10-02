@@ -32,5 +32,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.avaje:ebean:2.8.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.persistence:persistence-api:1.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.yaml:snakeyaml:1.15" level="project" />
+    <orderEntry type="library" name="WorldGuard-6.1.2" level="project" />
+    <orderEntry type="library" name="worldedit-bukkit-6.1.7-SNAPSHOT-dist" level="project" />
   </component>
 </module>

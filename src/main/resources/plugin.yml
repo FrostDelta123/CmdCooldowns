@@ -17,3 +17,5 @@ commands:
     permission: cmdcooldown.getcases
   get:
     permission: cmdcooldown.getcases
+  medalgen:
+    permission: cmdcooldown.execute

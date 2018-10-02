@@ -21,6 +21,7 @@ public final class CmdCooldowns extends JavaPlugin {
         this.getCommand("gadgets").setExecutor(executor);
         this.getCommand("free").setExecutor(executor);
         this.getCommand("get").setExecutor(executor);
+        this.getCommand("medalgen").setExecutor(executor);
 
         Vault.setupChat();
         Vault.setupEconomy();
@@ -30,9 +31,6 @@ public final class CmdCooldowns extends JavaPlugin {
         ntw.setUrl(this.getConfig().getString("url"));
         ntw.setUsername(this.getConfig().getString("username"));
 
-        System.out.println(this.getConfig().getString("password"));
-        System.out.println(this.getConfig().getString("url"));
-        System.out.println(this.getConfig().getString("username"));
 
         Bukkit.getScheduler().runTask(this, new Runnable() {
             @Override

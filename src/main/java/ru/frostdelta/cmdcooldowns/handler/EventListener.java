@@ -1,22 +1,26 @@
 package ru.frostdelta.cmdcooldowns.handler;
 
 
+import com.sk89q.worldguard.bukkit.WGBukkit;
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitTask;
 import ru.frostdelta.cmdcooldowns.CmdCooldowns;
 import ru.frostdelta.cmdcooldowns.Network;
 import ru.frostdelta.cmdcooldowns.Scheduler;
 import ru.frostdelta.cmdcooldowns.Vault;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class EventListener implements Listener {
 
@@ -26,6 +30,27 @@ public class EventListener implements Listener {
 
         this.plugin = instance;
 
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onMove(PlayerMoveEvent e){
+        if(e.getPlayer().hasPermission("cmdcooldown.bypass")){
+            return;
+        }
+        ApplicableRegionSet set = WGBukkit.getRegionManager(Bukkit.getServer().getWorlds().get(0)).getApplicableRegions(e.getTo());
+        Set<ProtectedRegion> list = set.getRegions();
+        for(ProtectedRegion region : list){
+            if(!region.getId().equalsIgnoreCase("spawn")){
+                return;
+            }
+        }
+        if(e.getPlayer().getGameMode().equals(GameMode.CREATIVE)){
+            e.getPlayer().setGameMode(GameMode.SURVIVAL);
+        }
+        if(e.getPlayer().isFlying()){
+            e.getPlayer().setAllowFlight(false);
+            e.getPlayer().setFlying(false);
+        }
     }
 
     @EventHandler

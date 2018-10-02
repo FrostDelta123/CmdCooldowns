@@ -3,9 +3,11 @@ package ru.frostdelta.cmdcooldowns;
 import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,19 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
         Player p = (Player) sender;
+        if(cmd.getName().equalsIgnoreCase("medalgen")){
+            if(p.getItemInHand().getType().equals(Material.NETHER_STAR)){
+                ItemMeta meta = p.getItemInHand().getItemMeta();
+                List<String> strings = new ArrayList<String>();
+                strings.add("Эксклюзивный предмет!");
+                strings.add("Медаль за прохождение паркура!");
+                meta.setDisplayName("Медаль за прохождение паркура");
+                meta.setLore(strings);
+                p.getItemInHand().setItemMeta(meta);
+                return true;
+            }
+
+        }else
         if(cmd.getName().equalsIgnoreCase("get")){
             Integer exp = p.getTotalExperience();
             Vault.economy.depositPlayer(p, exp*30);
@@ -44,7 +59,7 @@ public class CommandExecutor implements org.bukkit.command.CommandExecutor {
             int random1 = a + (int) (Math.random() * b);
             if(random1 <= 7){
                 sender.sendMessage(ChatColor.GREEN + "Вы выиграли КЕЙС С ДОНАТОМ");
-                Bukkit.broadcastMessage(ChatColor.RED + sender.getName() + ChatColor.GREEN + "Выиграл КЕЙС С ДОНАТОМ");
+                Bukkit.broadcastMessage(ChatColor.RED + sender.getName() + ChatColor.GREEN + " Выиграл КЕЙС С ДОНАТОМ");
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "crate give to "+sender.getName()+" DonateChest 1 online");
             }else sender.sendMessage(ChatColor.RED + "Вы ничего не выиграли, попробуйте позже!");
             freeList.add(p);
